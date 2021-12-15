@@ -7,5 +7,6 @@ namespace DataAccess.Abstract
 {
     public interface ILikeDal:IEntityRepository<Like>
     {
+
     }
 }
