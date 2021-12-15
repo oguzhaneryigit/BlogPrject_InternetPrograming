@@ -12,6 +12,6 @@ namespace Entities.Concrete
         public string Heading { get; set; }
         public string Type { get; set; }
         public string Content { get; set; }
-
+        public bool Deleted { get; set; }
     }
 }
