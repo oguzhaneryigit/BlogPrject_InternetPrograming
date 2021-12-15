@@ -5,7 +5,7 @@ using Entities.Abstract;
 
 namespace Entities.Concrete
 {
-    class Article:IEntity
+    public class Article:IEntity
     {
         public int ArticleId { get; set; }
         public int AuthorId { get; set; }

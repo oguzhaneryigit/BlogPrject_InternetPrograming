@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entities.Concrete
 {
-    class Like:IEntity
+    public class Like:IEntity
     {
         public int Id { get; set; }
         public int ArticleId { get; set; }
