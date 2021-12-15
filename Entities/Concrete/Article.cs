@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Entities.Abstract;
 
 namespace Entities.Concrete
 {
-    class Article
+    class Article:IEntity
     {
         public int ArticleId { get; set; }
         public int AuthorId { get; set; }
