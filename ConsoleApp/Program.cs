@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
+using System;
 
 namespace ConsoleApp
 {
@@ -6,7 +8,11 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            UserManager u = new UserManager(new EfUserDal());
+            foreach (var item in u.GetAll())
+            {
+                Console.WriteLine(item.Name);
+            }
         }
     }
 }
