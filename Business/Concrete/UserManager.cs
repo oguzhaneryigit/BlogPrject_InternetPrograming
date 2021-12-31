@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Utilities.Results;
+using Business.Utilities.Validators;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -16,17 +18,52 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
-
-        public List<User> GetAll()
+        public IResult Add(User user)
         {
-            return _userDal.GetAll();
+            try
+            {
+                if (!UserValidator.ValidateUser(user))
+                    throw new Exception("eklenen veri uygun değil");
+
+                _userDal.Add(user);
+                return new SuccessResult("veri eklendi");
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult(e.Message);
+            }
+            
         }
 
-   
-
-        public User GetById(int userId)
+        public IDataResult<List<User>> GetAll()
         {
-            return _userDal.Get(c => c.UserId == userId);
+            try
+            {
+                //BC
+                List<User> _users= _userDal.GetAll();
+                return new SuccessDataResult<List<User>>(_users);
+            }
+            catch (Exception)
+            {
+
+                return new ErrorDataResult<List<User>>();
+            }
+        }
+
+        public IDataResult<User>  GetById(int userId)
+        {
+            
+            try
+            {
+                //BC
+                User _user = _userDal.Get(c => c.UserId == userId);
+                return new SuccessDataResult<User>(_user);
+            }
+            catch (Exception)
+            {
+
+                return new ErrorDataResult<User>();
+            }
         }
     }
 }

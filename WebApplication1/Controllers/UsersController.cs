@@ -22,11 +22,26 @@ namespace WebApplication1.Controllers
             _userService = userService;
         }
 
-        [HttpGet]
-        public List<User> Get()
+        [HttpGet("getall")]
+        public IActionResult Get()
         {
-            return _userService.GetAll();
+            var result = _userService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
-        
+        [HttpPost("adduser")]
+        public IActionResult Add(User user)
+        {
+            var result = _userService.Add(user);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
     }
 }

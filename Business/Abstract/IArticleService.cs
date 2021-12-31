@@ -6,10 +6,9 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    public interface IUserService
+    public interface IArticleService
     {
-        IResult Add(User user);
-        IDataResult<List<User>> GetAll();
-        IDataResult<User> GetById(int userId);
+        IDataResult<List<Article>> GetAll();
+        IDataResult<Article> GetById(int userId);
     }
 }

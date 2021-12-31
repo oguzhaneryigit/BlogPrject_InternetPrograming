@@ -10,7 +10,7 @@ namespace DataAccess.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder )
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-9GS8K0I\SQLEXPRESS;Database=BlogProject;Trusted_Connection=true;");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-J93QKI0;Database=BlogProject;Trusted_Connection=true;");
 
            
         }

@@ -6,10 +6,9 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    public interface IUserService
+    public interface ILikeService
     {
-        IResult Add(User user);
-        IDataResult<List<User>> GetAll();
-        IDataResult<User> GetById(int userId);
+        IDataResult<List<Like>> GetAll();
+        IDataResult<Like> GetById(int userId);
     }
 }
