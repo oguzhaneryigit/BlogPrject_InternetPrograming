@@ -34,7 +34,7 @@ namespace WebApplication1.Controllers
             }
             return BadRequest(result);
         }
-        [SecuredOperation("user.add,admin")]
+        //[SecuredOperation("user.add,admin")]
         [HttpPost("adduser")]
         public IActionResult Add(User user)
         {

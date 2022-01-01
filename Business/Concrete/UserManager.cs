@@ -65,5 +65,34 @@ namespace Business.Concrete
                 return new ErrorDataResult<User>();
             }
         }
+
+      
+
+        IDataResult<List<OperationClaim>> IUserService.GetClaims(User user)
+        {
+            try
+            {
+                var _claims =_userDal.GetClaims(user);
+                return new SuccessDataResult<List<OperationClaim>>(_claims);
+            }
+            catch (Exception)
+            {
+
+                return new ErrorDataResult<List<OperationClaim>>();
+            }
+        }
+
+        IDataResult<User> IUserService.GetByMail(string mail)
+        {
+            try
+            {
+                var _user= _userDal.Get(u => u.Mail == mail);
+                return new SuccessDataResult<User>(_user);
+            }
+            catch (Exception)
+            {
+                return new ErrorDataResult<User>();
+            }
+        }
     }
 }
