@@ -17,8 +17,6 @@ namespace Business.Utilities.Validators
                 return false;
             if (user.TelNo.Length > 15)
                 return false;
-            if (user.Password.Length > 10)
-                return false;
             if (user.Description.Length > 10)//null veri sıkıntı yaratıyor
                 return false;
 

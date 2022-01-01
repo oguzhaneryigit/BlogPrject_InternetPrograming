@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspectsAutofac;
 using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
@@ -22,6 +23,7 @@ namespace WebApplication1.Controllers
             _userService = userService;
         }
 
+        
         [HttpGet("getall")]
         public IActionResult Get()
         {
@@ -32,6 +34,7 @@ namespace WebApplication1.Controllers
             }
             return BadRequest(result);
         }
+        [SecuredOperation("user.add,admin")]
         [HttpPost("adduser")]
         public IActionResult Add(User user)
         {
