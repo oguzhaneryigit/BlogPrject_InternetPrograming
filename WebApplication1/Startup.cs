@@ -1,5 +1,6 @@
 using Business.Abstract;
 using Business.Concrete;
+using Business.Utilities.IoC;
 using Business.Utilities.Security;
 using Business.Utilities.Security.JWT;
 using DataAccess.Abstract;
@@ -7,6 +8,7 @@ using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -33,12 +35,15 @@ namespace WebApplication1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //AOP
+            //Autofac, Ninject,CastleWindsor, StructureMap, LightInject, DryInject -->IoC Container
+            //AOP
+            //Postsharp
             services.AddControllers();
-            //services.AddSingleton<IUserService,UserManager>();
-            //services.AddSingleton<IUserDal, EfUserDal>();
-
+            //services.AddSingleton<IProductService,ProductManager>();
+            //services.AddSingleton<IProductDal, EfProductDal>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
-
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -53,6 +58,8 @@ namespace WebApplication1
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
+            ServiceTool.Create(services);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

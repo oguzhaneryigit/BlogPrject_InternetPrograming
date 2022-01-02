@@ -11,14 +11,9 @@ namespace Business.Utilities.Validators
         {
             if (user.Name.Length>10)
                 return false;
-            if (user.Rank.Length > 10)
+            if (user.Email.Length > 30)
                 return false;
-            if (user.Mail.Length > 30)
-                return false;
-            if (user.TelNo.Length > 15)
-                return false;
-            if (user.Description.Length > 10)//null veri sıkıntı yaratıyor
-                return false;
+
 
 
             return true;

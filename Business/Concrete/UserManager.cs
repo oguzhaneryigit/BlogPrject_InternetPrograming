@@ -17,82 +17,19 @@ namespace Business.Concrete
         {
             _userDal = userDal;
         }
-
-        public IResult Add(User user)
+        public List<OperationClaim> GetClaims(User user)
         {
-            try
-            {
-                if (!UserValidator.ValidateUser(user))
-                    throw new Exception("eklenen veri uygun değil");
-
-                _userDal.Add(user);
-                return new SuccessResult("veri eklendi");
-            }
-            catch (Exception e)
-            {
-                return new ErrorResult(e.Message);
-            }
-            
+            return _userDal.GetClaims(user);
         }
 
-        public IDataResult<List<User>> GetAll()
+        public void Add(User user)
         {
-            try
-            {
-                //BC
-                List<User> _users= _userDal.GetAll();
-                return new SuccessDataResult<List<User>>(_users);
-            }
-            catch (Exception)
-            {
-
-                return new ErrorDataResult<List<User>>();
-            }
+            _userDal.Add(user);
         }
 
-        public IDataResult<User>  GetById(int userId)
+        public User GetByEmail(string email)
         {
-            
-            try
-            {
-                //BC
-                User _user = _userDal.Get(c => c.UserId == userId);
-                return new SuccessDataResult<User>(_user);
-            }
-            catch (Exception)
-            {
-
-                return new ErrorDataResult<User>();
-            }
-        }
-
-      
-
-        IDataResult<List<OperationClaim>> IUserService.GetClaims(User user)
-        {
-            try
-            {
-                var _claims =_userDal.GetClaims(user);
-                return new SuccessDataResult<List<OperationClaim>>(_claims);
-            }
-            catch (Exception)
-            {
-
-                return new ErrorDataResult<List<OperationClaim>>();
-            }
-        }
-
-        IDataResult<User> IUserService.GetByMail(string mail)
-        {
-            try
-            {
-                var _user= _userDal.Get(u => u.Mail == mail);
-                return new SuccessDataResult<User>(_user);
-            }
-            catch (Exception)
-            {
-                return new ErrorDataResult<User>();
-            }
+            return _userDal.Get(u => u.Email == email);
         }
     }
 }

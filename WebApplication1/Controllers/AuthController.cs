@@ -41,7 +41,7 @@ namespace WebApplication1.Controllers
         [HttpPost("register")]
         public ActionResult Register(UserForRegisterDto userForRegisterDto)
         {
-            var userExists = _authService.UserExists(userForRegisterDto.Mail);
+            var userExists = _authService.UserExists(userForRegisterDto.Email);
             if (!userExists.Success)
             {
                 return BadRequest(userExists.Message);
