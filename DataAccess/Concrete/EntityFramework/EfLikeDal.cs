@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfLikeDal : EfEntityRepositoryBase<Like,BlogProjectContext>,ILikeDal
+    public class EfLikeDal : EfEntityRepositoryBase<Like,BlogProjectDBContext>,ILikeDal
     {
        
     }

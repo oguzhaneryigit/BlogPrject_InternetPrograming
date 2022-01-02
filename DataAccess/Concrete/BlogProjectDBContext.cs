@@ -6,11 +6,11 @@ using System.Text;
 
 namespace DataAccess.Concrete
 {
-    public class BlogProjectContext:DbContext
+    public class BlogProjectDBContext:DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder )
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-9GS8K0I\SQLEXPRESS;Database=BlogProject;Trusted_Connection=true;");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-9GS8K0I\SQLEXPRESS;Database=BlogProjectDB;Trusted_Connection=true;");
         }
         public DbSet<Article> Articles { get; set; }
         public DbSet<User> Users { get; set; }

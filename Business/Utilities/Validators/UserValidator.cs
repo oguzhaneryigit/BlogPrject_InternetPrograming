@@ -9,13 +9,6 @@ namespace Business.Utilities.Validators
     {
         public static bool ValidateUser(User user)
         {
-            if (user.Name.Length>10)
-                return false;
-            if (user.Email.Length > 30)
-                return false;
-
-
-
             return true;
         }
     }
