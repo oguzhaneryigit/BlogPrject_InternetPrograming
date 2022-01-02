@@ -1,5 +1,7 @@
 using Business.Abstract;
 using Business.Concrete;
+using Business.Utilities.DependecyResolvers;
+using Business.Utilities.Extensions;
 using Business.Utilities.IoC;
 using Business.Utilities.Security;
 using Business.Utilities.Security.JWT;
@@ -42,7 +44,7 @@ namespace WebApplication1
             services.AddControllers();
             //services.AddSingleton<IProductService,ProductManager>();
             //services.AddSingleton<IProductDal, EfProductDal>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -58,7 +60,10 @@ namespace WebApplication1
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
-            ServiceTool.Create(services);
+            services.AddDependencyResolvers(new ICoreModule[] {
+
+                        new CoreModule()
+                });
 
         }
 

@@ -9,11 +9,11 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
             UserManager u = new UserManager(new EfUserDal());
-            foreach (var item in u.GetAll().Data)
-            {
+            //foreach (var item in u.GetAll().Data)
+            //{
                 
-                Console.WriteLine();
-            }
+            //    Console.WriteLine();
+            //}
         }
     }
 }

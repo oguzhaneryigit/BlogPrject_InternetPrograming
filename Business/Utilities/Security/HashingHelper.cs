@@ -26,8 +26,9 @@ namespace Business.Utilities.Security
                         return false;
                     }
                 }
+               return true;
             }
-            return true;
+            
         }
     }
 }
