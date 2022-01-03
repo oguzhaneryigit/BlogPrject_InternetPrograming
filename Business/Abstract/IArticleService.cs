@@ -9,6 +9,7 @@ namespace Business.Abstract
     public interface IArticleService
     {
         IDataResult<List<Article>> GetAll();
-        IDataResult<Article> GetById(int userId);
+        IDataResult<List<Article>> GetArticlesByUserId(int articleId);
+        IDataResult<Article> GetById(int userId); 
     }
 }

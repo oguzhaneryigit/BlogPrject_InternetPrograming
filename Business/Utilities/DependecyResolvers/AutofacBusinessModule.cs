@@ -18,8 +18,8 @@ namespace Business.Utilities.DependecyResolvers
     {
         protected override void Load(ContainerBuilder builder)
         {
-            //builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
-            //builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
+            builder.RegisterType<ArticleManager>().As<IArticleService>().SingleInstance();
+            builder.RegisterType<EfArticleDal>().As<IArticleDal>().SingleInstance();
 
             builder.RegisterType<UserManager>().As<IUserService>();
             builder.RegisterType<EfUserDal>().As<IUserDal>();

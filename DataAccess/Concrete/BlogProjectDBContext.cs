@@ -10,12 +10,12 @@ namespace DataAccess.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder )
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-9GS8K0I\SQLEXPRESS;Database=BlogProjectDB;Trusted_Connection=true;");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-J93QKI0;Database=BlogProjectDB;Trusted_Connection=true;");
         }
         public DbSet<Article> Articles { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Like> Likes{ get; set; }
-
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
     }
