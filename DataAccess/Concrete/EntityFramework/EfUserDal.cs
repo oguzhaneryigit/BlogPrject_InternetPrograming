@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -21,6 +22,16 @@ namespace DataAccess.Concrete.EntityFramework
                              select new OperationClaim { ClaimId = operationClaim.ClaimId, ClaimName = operationClaim.ClaimName };
                 return result.ToList();
 
+            }
+        }
+
+        public void AddClaim(User user)
+        {
+            using (var context = new BlogProjectDBContext())
+            {
+                var addedEntity = context.Entry(new UserOperationClaim() { OperationClaimId=3,UserId=user.UserId});
+                addedEntity.State = EntityState.Added;
+                context.SaveChanges();
             }
         }
     }

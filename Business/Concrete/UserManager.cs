@@ -32,6 +32,7 @@ namespace Business.Concrete
             ValidationTool.Validate(new UserValidator(), user);
 
             _userDal.Add(user);
+            _userDal.AddClaim(user);
         }
 
         public User GetByEmail(string email)

@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspectsAutofac;
+using Business.Utilities.Results;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,28 +22,76 @@ namespace WebApplication1.Controllers
             _articleService = articleService;
         }
 
+        [HttpPost("addarticle")]
+        public IActionResult AddArticle(Article article)
+        {
+            try
+            {
+                var result = _articleService.AddArticle(article);
+                if (!result.Success)
+                {
+                    throw new Exception(result.Message+" Article Eklenemedi");
+                }
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ErrorResult(e.Message));
+            }
+        }
+
+        [HttpPost("deletearticle")]
+        public IActionResult DeleteArticle(Article article)
+        {
+            try
+            {
+                var result = _articleService.DeleteArticle(article);
+                if (!result.Success)
+                {
+                    throw new Exception(result.Message);
+                }
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ErrorResult(e.Message));
+            }
+        }
+
         [HttpGet("getallarticles")]
         public ActionResult GetAll( )
         {
-            //try
-            //{
-            //    var result = _articleService.GetAll();
-            //    if (result.Success!)
-            //    {
-            //        throw new Exception(result.Message);
-            //    }
-            //    return Ok(result.Data);
-            //}
-            //catch (Exception e)
-            //{
-            //    return BadRequest(e.Message);
-            //}
-            var result = _articleService.GetAll();
-            if (result.Success)
+            try
             {
-                return Ok(result.Data);
+                var result = _articleService.GetAll();
+                if (!result.Success)
+                {
+                    throw new Exception(result.Message);
+                }
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            catch (Exception e)
+            {
+                return BadRequest(new ErrorResult(e.Message));
+            }
+        }
+
+        [HttpGet("getarticlesbyid")]
+        public ActionResult GetArticlesByUserId(int id)
+        {
+            try
+            {
+                var result = _articleService.GetArticlesByUserId(id);
+                if (!result.Success)
+                {
+                    throw new Exception(result.Message);
+                }
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ErrorResult(e.Message));
+            }
         }
     }
 }

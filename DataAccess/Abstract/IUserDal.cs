@@ -7,6 +7,8 @@ namespace DataAccess.Abstract
 {
     public interface IUserDal:IEntityRepository<User>
     {
-        List<OperationClaim> GetClaims(User user); 
+        List<OperationClaim> GetClaims(User user);
+
+        void AddClaim(User user);
     }
 }
