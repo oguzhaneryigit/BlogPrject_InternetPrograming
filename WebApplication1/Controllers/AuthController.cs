@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Utilities.Results;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -68,5 +69,18 @@ namespace WebApplication1.Controllers
 
             return BadRequest(result);
         }
+        [HttpGet("isadmin")]
+        public ActionResult isAdmin()
+        {
+            try
+            {
+                var result = _authService.IsAdmin();
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return Ok(new ErrorDataResult<bool>(false, e.Message));
+            }
+        } 
     }
 }

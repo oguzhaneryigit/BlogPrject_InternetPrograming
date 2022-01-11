@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspectsAutofac;
 using Business.Utilities.Results;
 using Business.Utilities.Security;
 using Business.Utilities.Security.JWT;
@@ -76,6 +77,12 @@ namespace Business.Concrete
         {
             var result = _userService.GetById(id);
             return new SuccessDataResult<User>(result);
+        }
+
+        [SecuredOperation("admin")]
+        public IDataResult<bool> IsAdmin()
+        {
+            return new SuccessDataResult<bool>(true);
         }
     }
 }
