@@ -26,7 +26,7 @@ namespace Business.Concrete
 
         }
 
-        
+        [SecuredOperation("admin,user")]
         public IResult DeleteArticle(Article article)
         {
             Article articleToUpdate = _articleDal.Get(x=> x.ArticleId==article.ArticleId && x.AuthorId==article.AuthorId);
@@ -39,19 +39,21 @@ namespace Business.Concrete
             return new SuccessResult("gönderi silindi");
         }
 
-        //[SecuredOperation("admin")]
+        [SecuredOperation("admin")]
         public IDataResult<List<Article>> GetAll()
         {
             List<Article> articles = _articleDal.GetAll();
             return new SuccessDataResult<List<Article>>(articles);    
         }
 
+        [SecuredOperation("admin,user")]
         public IDataResult<List<Article>> GetArticlesByUserId(int userId)
         {
             List<Article> articles = _articleDal.GetAll(x => x.AuthorId == userId && x.Deleted==false);
             return new SuccessDataResult<List<Article>>(articles);
         }
 
+        [SecuredOperation("admin,user")]
         public IDataResult<Article> GetById(int articleId)
         {
             Article article = _articleDal.Get(x => x.ArticleId == articleId);

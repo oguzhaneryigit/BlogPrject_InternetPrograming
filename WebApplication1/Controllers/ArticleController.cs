@@ -58,7 +58,6 @@ namespace WebApplication1.Controllers
             }
         }
 
-        [SecuredOperation("admin")]
         [HttpGet("getallarticles")]
         public ActionResult GetAll( )
         {
@@ -77,7 +76,6 @@ namespace WebApplication1.Controllers
             }
         }
 
-        //[SecuredOperation("admin,user")]
         [HttpGet("getarticlesbyid")]
         public ActionResult GetArticlesByUserId(int id)
         {
