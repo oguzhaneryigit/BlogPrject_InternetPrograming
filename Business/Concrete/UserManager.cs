@@ -39,5 +39,10 @@ namespace Business.Concrete
         {
             return _userDal.Get(u => u.Email == email);
         }
+
+        public User GetById(int id)
+        {
+            return _userDal.Get(u => u.UserId == id);
+        }
     }
 }

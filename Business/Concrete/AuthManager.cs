@@ -68,7 +68,14 @@ namespace Business.Concrete
         {
             var claims = _userService.GetClaims(user);
             var accessToken = _tokenHelper.CreateToken(user, claims);
+            accessToken.Id = user.UserId;
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
+        }
+
+        public IDataResult<User> GetUser(int id)
+        {
+            var result = _userService.GetById(id);
+            return new SuccessDataResult<User>(result);
         }
     }
 }

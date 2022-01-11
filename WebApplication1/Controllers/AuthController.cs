@@ -56,5 +56,17 @@ namespace WebApplication1.Controllers
 
             return BadRequest(result);
         }
+        [HttpGet("getuserinfo")]
+        public ActionResult Login(int id)
+        {
+
+            var result = _authService.GetUser(id); 
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
     }
 }

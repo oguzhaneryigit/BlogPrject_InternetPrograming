@@ -17,6 +17,7 @@ namespace Business.Concrete
         {
             _articleDal = articleDal;
         }
+
         [SecuredOperation("admin,user")]
         public IResult AddArticle(Article article)
         {
